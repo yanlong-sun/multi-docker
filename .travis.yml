@@ -13,4 +13,10 @@ after_success:
   - docker build -t yanlongsun/multi-nginx ./nginx
   - docker build -t yanlongsun/multi-server ./server
   - docker build -t yanlongsun/multi-worker ./worker
-
+  # log in to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push to docker hub
+  - docker push yanlongsun/multi-client
+  - docker push yanlongsun/multi-nginx
+  - docker push yanlongsun/multi-server
+  - docker push yanlongsun/multi-worker
